@@ -82,18 +82,20 @@ export default function Home() {
                 {weatherData ? (
                     <div>
                         <h2>Weather Forecast for {weatherData.location.name}</h2>
-                        {weatherData.forecast.forecastday.map(day => (
-                            <div key={day.date} style={{ marginBottom: "20px" }}>
-                                <h3>{day.date}</h3>
-                                <p>Sunrise:{day.astro.sunrise}</p>
-                                <p>Moon_phase:{day.astro.moon_phase}</p>
-                                <p>Condition: {day.day.condition.text}</p>
-                                <p>Max Temp: {day.day.maxtemp_c}°C</p>
-                                <p>Min Temp: {day.day.mintemp_c}°C</p>
-                                <img src={day.day.condition.icon} alt={day.day.condition.text} />
-                                <button onClick={handleView}>View Details</button>
-                            </div>
-                        ))}
+                        <div style={{display:"flex", justifyContent:"space-evenly"}}>
+                            {weatherData.forecast.forecastday.map(day => (
+                                <div key={day.date} style={{ marginBottom: "20px" }}>
+                                    <h3>{day.date}</h3>
+                                    <p>Sunrise:{day.astro.sunrise}</p>
+                                    <p>Moon_phase:{day.astro.moon_phase}</p>
+                                    <p>Condition: {day.day.condition.text}</p>
+                                    <p>Max Temp: {day.day.maxtemp_c}°C</p>
+                                    <p>Min Temp: {day.day.mintemp_c}°C</p>
+                                    <img src={day.day.condition.icon} alt={day.day.condition.text} />
+                                    <button onClick={handleView}>View Details</button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ) : (
                     <p>Loading...</p>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from './header/Header'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 interface WeatherData {
     location: {
@@ -75,6 +76,7 @@ export default function Home() {
     
     return (
         <div>
+            <SpeedInsights/>
             <Header/>
             <div style={{ padding: "20px", textAlign: "center" }}>
                 <input type="text" name="textInput" placeholder='Entrer la ville' onChange={(e)=>setInputText(e.target.value)}/>

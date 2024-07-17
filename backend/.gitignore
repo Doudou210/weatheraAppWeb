@@ -1,2 +1,4 @@
 # Ignore server.js in back
 server.js
+
+/node_modules

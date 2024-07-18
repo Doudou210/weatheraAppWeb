@@ -1,22 +1,14 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/users");
+const { Pool } = require("pg");
 
 const createUser = async(req,res)=>{
+    const { username, email, password} =req.body;
     try {
-        const { username, email, password} =req.body;
-        const existUserEm = await User.findOne({ username })
-        if (existUserEm) {
-            return res.status(400).json({error: "email is already existing"})
-        }
-
-        const hashedPassword = await bcrypt.hash(password,10);
-        const newUser = new User({
-            username,
-            email,
-            password: hashedPassword
-        });
-        const savedUser = await newUser.save();
-        res.status(200).json(savedUser);
+        const query = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
+    const values = [username, email, password];
+    const result = await Pool.query(query, values);
+    res.status(201).json(result.rows[0]);
     } catch (error) {
         console.error(error);
     }

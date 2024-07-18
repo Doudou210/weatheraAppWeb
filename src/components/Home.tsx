@@ -38,7 +38,7 @@ export default function Home() {
             url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
             params: {
                 q: city,
-                days: '4'
+                days: '3'
             },
             headers: {
                 'x-rapidapi-key': '25a8461657msh3bbed42dcafaca3p1f72b5jsnde30eca3c631',
@@ -71,7 +71,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetchData('noisy-le-grand'); // Default city
+        fetchData('noisy-le-grand');
     }, []);
     
     return (

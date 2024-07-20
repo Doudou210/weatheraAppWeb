@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 interface FormDataPros{
-    username:string;
     email: string;
     password: string;
 }
 export default function AuthUsers() {
     const [formData, setFormData] = useState<FormDataPros>({
-        username:"",
         email:"",
         password:"",
     });
+    const navigate = useNavigate();
+
     const handleSubmit = async (e:any)=>{
         e.preventDefault();
         try {
@@ -21,13 +22,13 @@ export default function AuthUsers() {
                 },
                 body: JSON.stringify(formData)
             });
-            if (response.status === 201) {
+            setFormData({
+                email:"",
+                password:"",
+            });
+            if (response.ok) {
                 console.log("Inscription réussie !");
-                setFormData({
-                    username:"",
-                    email:"",
-                    password:"",
-                });
+                navigate('/');
             }
         } catch (error) {
             console.error(error);

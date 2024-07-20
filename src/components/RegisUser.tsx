@@ -31,6 +31,9 @@ export default function RegisUser() {
                 email:"",
                 password:"",
             });
+            if (response.ok) {
+                navigate('/')
+            }
             setMessages("Inscription réussie !");
         } catch (error) {
             console.error(error);

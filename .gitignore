@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Ignore server.js in back
 /backend/server.js
+/backend/db.js
+/backend/.env
+/backend/node_modules

@@ -30,7 +30,7 @@ interface WeatherData {
 export default function Home() {
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [inputText, setInputText] = useState<string>("");
-    const [error, setError] = useState<string | null>(null)
+    // const [error, setError] = useState<string | null>(null)
     const navigate = useNavigate();
     const fetchData = async (city: string) => {
         const options = {
@@ -50,17 +50,17 @@ export default function Home() {
             const response = await axios.request(options);
             console.log(response.data);
             setWeatherData(response.data);
-            setError(null);
+            // setError(null);
         } catch (error) {
             console.error(error);
-            setError('Failed to fetch weather data. Please try again.');
+            // setError('Failed to fetch weather data. Please try again.');
         }
     };
     const handleSearch = () => {
         if (inputText.trim() !== '') {
             fetchData(inputText);
         } else {
-            setError('Please enter a valid city name.');
+            // setError('Please enter a valid city name.');
         }
     };
 

@@ -1,25 +1,12 @@
-const { Client } = require("pg");
+const { Pool } = require('pg');
+require('dotenv').config();
 
-export const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    database: 'weatherapp',
-    user: 'postgres',
-    password: 'doudou',
-  });
-  
-  client.connect()
-  .then(()=>{
-    console.log("DB is connecting");
-  })
-  .then(()=>{
-    client.query("SELECT * FROM users", (err,res)=>{
-      if (!err) {
-        console.log(res.rows);
-      } else {
-        console.log(err.message);
-      }
-    })
-  })
-  .catch(err=> console.log(err));
-// module.exports = client;
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+});
+
+pool.connect()
+.then(() => console.log("DB is connected"))
+.catch(err => console.error('Connection error', err.stack));
+
+module.exports = pool;

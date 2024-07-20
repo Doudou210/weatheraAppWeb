@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const pool = require("../db");
+const client = require("../db");
 
 const createUser = async(req,res)=>{
     const { username, email, password } = req.body;
@@ -7,7 +7,7 @@ const createUser = async(req,res)=>{
     try {
       const query = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *";
       const values = [username, email, hashPassword];
-      const result = await pool.query(query, values);
+      const result = await client.query(query, values);
       res.status(201).json(result.rows[0]);
       console.log(result);
     } catch (err) {
@@ -21,7 +21,7 @@ const loginUser = async (req,res) => {
     try {
         const query = "SELECT * FROM users WHERE email = $1";
         const values = [email];
-        const result = await pool.query(query, values);
+        const result = await client.query(query, values);
     
         if (result.rows.length === 0) {
           return res.status(400).json({ error: "User not found, create an account" });

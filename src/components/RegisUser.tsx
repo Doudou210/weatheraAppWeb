@@ -19,7 +19,7 @@ export default function RegisUser() {
     const handleSubmit = async (e:any)=>{
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/create",{
+            const response = await fetch("http://localhost:8000/create",{
                 method: "POST",
                 headers:{
                     "Content-Type" : "application/json"

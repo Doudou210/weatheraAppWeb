@@ -42,7 +42,7 @@ export default function Home() {
                 days: '3'
             },
             headers: {
-                // 'x-rapidapi-key': process.env.REACT_APP_WEATHER_API_KEY,
+                'x-rapidapi-key': process.env.REACT_APP_WEATHER_API_KEY,
                 'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com'
             }
         };

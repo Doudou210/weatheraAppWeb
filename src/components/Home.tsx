@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import Header from './header/Header'
+import React, { useEffect, useState } from 'react';
+import Header from './header/Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import "../assets/css/Home.css"
 
 interface WeatherData {
     location: {
@@ -41,7 +42,7 @@ export default function Home() {
                 days: '3'
             },
             headers: {
-                'x-rapidapi-key': '25a8461657msh3bbed42dcafaca3p1f72b5jsnde30eca3c631',
+                'x-rapidapi-key': '',
                 'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com'
             }
         };
@@ -63,13 +64,6 @@ export default function Home() {
             // setError('Please enter a valid city name.');
         }
     };
-
-    const handleView = async()=>{
-        if (weatherData) {
-            navigate('/weatherdetails', { state: weatherData });
-        }
-    }
-
     useEffect(() => {
         fetchData('noisy-le-grand');
     }, []);
@@ -78,15 +72,17 @@ export default function Home() {
         <div>
             <SpeedInsights/>
             <Header/>
-            <div style={{ padding: "20px", textAlign: "center" }}>
-                <input type="text" name="textInput" placeholder='Entrer la ville' onChange={(e)=>setInputText(e.target.value)}/>
-                <button onClick={handleSearch}>Search</button>
+            <div className='containerHome'>
+                <div className='inputSearch'>
+                    <input type="text" name="textInput" placeholder='Entry the city...' onChange={(e)=>setInputText(e.target.value)}/>
+                    <button onClick={handleSearch}>Search</button>
+                </div>
                 {weatherData ? (
-                    <div>
+                    <div className='containerWeather'>
                         <h2>Weather Forecast for {weatherData.location.name}</h2>
-                        <div style={{display:"flex", justifyContent:"space-evenly"}}>
+                        <div className='detailsWeather'>
                             {weatherData.forecast.forecastday.map(day => (
-                                <div key={day.date} style={{ marginBottom: "20px" }}>
+                                <div key={day.date}>
                                     <h3>{day.date}</h3>
                                     <p>Sunrise:{day.astro.sunrise}</p>
                                     <p>Moon_phase:{day.astro.moon_phase}</p>
@@ -94,7 +90,6 @@ export default function Home() {
                                     <p>Max Temp: {day.day.maxtemp_c}°C</p>
                                     <p>Min Temp: {day.day.mintemp_c}°C</p>
                                     <img src={day.day.condition.icon} alt={day.day.condition.text} />
-                                    <button onClick={handleView}>View Details</button>
                                 </div>
                             ))}
                         </div>

@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
+  "short_name": "Weather App",
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "apps.46538.9007199266506777.7e7fab83-59d7-4967-aacc-3f48737566c8.7a511058-40d2-4d74-9f08-342f28bca800",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "apps.46538.9007199266506777.7e7fab83-59d7-4967-aacc-3f48737566c8.7a511058-40d2-4d74-9f08-342f28bca800",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "apps.46538.9007199266506777.7e7fab83-59d7-4967-aacc-3f48737566c8.7a511058-40d2-4d74-9f08-342f28bca800",
       "type": "image/png",
       "sizes": "512x512"
     }

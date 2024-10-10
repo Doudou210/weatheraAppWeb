@@ -8,7 +8,7 @@ const options = {
     days: '3'
   },
   headers: {
-    'x-rapidapi-key': '25a8461657msh3bbed42dcafaca3p1f72b5jsnde30eca3c631',
+    'x-rapidapi-key': '',
     'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com'
   }
 };
@@ -19,3 +19,4 @@ try {
 } catch (error) {
 	console.error(error);
 }
+

@@ -17,28 +17,28 @@ const createUser = async(req,res)=>{
 }
 
 const loginUser = async (req,res) => {
-    const { email, password} = req.body;
-    try {
-        const query = "SELECT * FROM users WHERE email = $1";
-        const values = [email];
-        const result = await client.query(query, values);
-    
-        if (result.rows.length === 0) {
-          return res.status(400).json({ error: "User not found, create an account" });
-        }
-    
-        const user = result.rows[0];
-        const passVerif = await bcrypt.compare(password, user.password);
-    
-        if (passVerif) {
-          res.status(200).json({ message: "Connexion réussie!" });
-        } else {
-          res.status(405).json({ error: "Email or password is invalid, try again" });
-        }
-      } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: "Failed to login user" });
-      }
+  const { email, password} = req.body;
+  try {
+    const query = "SELECT * FROM users WHERE email = $1";
+    const values = [email];
+    const result = await client.query(query, values);
+
+    if (result.rows.length === 0) {
+      return res.status(400).json({ error: "User not found, create an account" });
+    }
+
+    const user = result.rows[0];
+    const passVerif = await bcrypt.compare(password, user.password);
+
+    if (passVerif) {
+      res.status(200).json({ message: "Connexion réussie!" });
+    } else {
+      res.status(405).json({ error: "Email or password is invalid, try again" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to login user" });
+  }
 }
 module.exports = {
     createUser,
